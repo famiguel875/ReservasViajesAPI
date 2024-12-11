@@ -1,0 +1,70 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="25.0.3">
+  <diagram name="Diagrama ER" id="0">
+    <mxGraphModel dx="1877" dy="596" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="gOc5-WUVQVbb_Qu5_-4h-1" value="Usuarios" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-120" y="300" width="200" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="gOc5-WUVQVbb_Qu5_-4h-6" value="&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;id_usuario(PK)&lt;/span&gt;&lt;div&gt;&lt;br style=&quot;text-wrap-mode: wrap;&quot;&gt;&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;nombre&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br style=&quot;text-wrap-mode: wrap;&quot;&gt;&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;correo&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br style=&quot;text-wrap-mode: wrap;&quot;&gt;&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;contraseña&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br style=&quot;text-wrap-mode: wrap;&quot;&gt;&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;fecha_creacion&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="gOc5-WUVQVbb_Qu5_-4h-1">
+          <mxGeometry x="50" y="40" width="100" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="gOc5-WUVQVbb_Qu5_-4h-2" value="Reservas" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="300" width="200" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="gOc5-WUVQVbb_Qu5_-4h-7" value="&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;id_reserva(PK)&lt;/span&gt;&lt;div&gt;&lt;br style=&quot;text-wrap-mode: wrap;&quot;&gt;&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;id_usuario(FK)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br style=&quot;text-wrap-mode: wrap;&quot;&gt;&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;fecha_reserva&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br style=&quot;text-wrap-mode: wrap;&quot;&gt;&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;estado&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="gOc5-WUVQVbb_Qu5_-4h-2">
+          <mxGeometry x="50" y="55" width="100" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="gOc5-WUVQVbb_Qu5_-4h-3" value="Detalles_Reserva" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="920" y="300" width="200" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="gOc5-WUVQVbb_Qu5_-4h-8" value="&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;id_detalle(PK)&lt;/span&gt;&lt;div&gt;&lt;br style=&quot;text-wrap-mode: wrap;&quot;&gt;&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;id_reserva(FK)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br style=&quot;text-wrap-mode: wrap;&quot;&gt;&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;destino&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br style=&quot;text-wrap-mode: wrap;&quot;&gt;&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;fecha_inicio&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br style=&quot;text-wrap-mode: wrap;&quot;&gt;&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;fecha_fin&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br style=&quot;text-wrap-mode: wrap;&quot;&gt;&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;precio_total&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="gOc5-WUVQVbb_Qu5_-4h-3">
+          <mxGeometry x="50" y="25" width="100" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="gOc5-WUVQVbb_Qu5_-4h-9" value="realiza" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="360" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gOc5-WUVQVbb_Qu5_-4h-10" value="tiene" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="360" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gOc5-WUVQVbb_Qu5_-4h-12" value="0, 1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="370" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gOc5-WUVQVbb_Qu5_-4h-13" value="0, N" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="330" y="370" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gOc5-WUVQVbb_Qu5_-4h-14" value="1,1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="610" y="370" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gOc5-WUVQVbb_Qu5_-4h-15" value="1, N" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="860" y="370" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gOc5-WUVQVbb_Qu5_-4h-18" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="gOc5-WUVQVbb_Qu5_-4h-12" target="gOc5-WUVQVbb_Qu5_-4h-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="470" as="sourcePoint" />
+            <mxPoint x="150" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gOc5-WUVQVbb_Qu5_-4h-19" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="gOc5-WUVQVbb_Qu5_-4h-9" target="gOc5-WUVQVbb_Qu5_-4h-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="430" as="sourcePoint" />
+            <mxPoint x="410" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gOc5-WUVQVbb_Qu5_-4h-20" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="gOc5-WUVQVbb_Qu5_-4h-2" target="gOc5-WUVQVbb_Qu5_-4h-10">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="670" y="440" as="sourcePoint" />
+            <mxPoint x="790" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gOc5-WUVQVbb_Qu5_-4h-21" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="gOc5-WUVQVbb_Qu5_-4h-10" target="gOc5-WUVQVbb_Qu5_-4h-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="840" y="440" as="sourcePoint" />
+            <mxPoint x="960" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
