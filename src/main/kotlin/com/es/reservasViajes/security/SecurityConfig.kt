@@ -32,23 +32,29 @@ class SecurityConfig(private val rsaKeys: RSAKeysProperties) {
         return http
             .csrf { it.disable() }
             .authorizeHttpRequests { auth -> auth
-                .requestMatchers("/usuarios/login").permitAll()
                 // Rutas públicas
-                .requestMatchers("/auth/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
+                .requestMatchers(HttpMethod.POST, "/usuarios").permitAll() // Crear usuario
+                .requestMatchers(HttpMethod.POST, "/usuarios/login").permitAll() // Login de usuario
 
                 // Rutas autenticadas para usuarios generales
-                .requestMatchers("/usuarios/**").authenticated()
-                .requestMatchers("/reservas/**").authenticated()
-                .requestMatchers(HttpMethod.GET, "/reservas").authenticated()
-                .requestMatchers("/detalles/**").authenticated()
+                .requestMatchers(HttpMethod.GET, "/usuarios/**").authenticated() // Obtener usuario por ID
+                .requestMatchers(HttpMethod.PUT, "/usuarios/**").authenticated() // Actualizar usuario
+                .requestMatchers(HttpMethod.DELETE, "/usuarios/**").authenticated() // Eliminar usuario
 
-                // Rutas específicas para roles avanzados
-                .requestMatchers(HttpMethod.PUT, "/reservas/{id}").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/reservas/{id}").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/detalles/{id}").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/reservas").authenticated() // Crear reserva
+                .requestMatchers(HttpMethod.GET, "/reservas").authenticated() // Obtener todas las reservas
+                .requestMatchers(HttpMethod.GET, "/reservas/**").authenticated() // Obtener reserva por ID
+                .requestMatchers(HttpMethod.POST, "/detalles").authenticated() // Crear detalle reserva
+                .requestMatchers(HttpMethod.GET, "/detalles").authenticated() // Obtener todos los detalles
+                .requestMatchers(HttpMethod.GET, "/detalles/**").authenticated() // Obtener detalle por ID
+                .requestMatchers(HttpMethod.PUT, "/detalles/**").authenticated() // Actualizar detalle
 
-                // Rutas para pruebas y cualquier otra configuración
+                // Rutas específicas para ADMIN
+                .requestMatchers(HttpMethod.PUT, "/reservas/**").hasRole("ADMIN") // Actualizar reserva
+                .requestMatchers(HttpMethod.DELETE, "/reservas/**").hasRole("ADMIN") // Eliminar reserva
+                .requestMatchers(HttpMethod.DELETE, "/detalles/**").hasRole("ADMIN") // Eliminar detalle
+
+                // Cualquier otra ruta requiere autenticación
                 .anyRequest().authenticated()
             }
             .oauth2ResourceServer { oauth2 -> oauth2.jwt(Customizer.withDefaults()) }

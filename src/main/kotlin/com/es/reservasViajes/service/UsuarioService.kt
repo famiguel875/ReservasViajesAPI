@@ -30,4 +30,16 @@ class UsuarioService(
         val usuario = repository.findById(id).orElseThrow { Exception("Usuario no encontrado") }
         repository.delete(usuario)
     }
+
+    fun verificarCredenciales(correo: String, contraseña: String): Usuario? {
+        val usuario = repository.findByCorreo(correo)
+            ?: throw IllegalArgumentException("Usuario no encontrado con el correo proporcionado")
+
+        // Verificar si la contraseña coincide
+        if (!passwordEncoder.matches(contraseña, usuario.contraseña)) {
+            throw IllegalArgumentException("Contraseña incorrecta")
+        }
+
+        return usuario
+    }
 }

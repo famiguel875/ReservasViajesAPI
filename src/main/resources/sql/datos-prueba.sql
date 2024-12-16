@@ -1,7 +1,7 @@
 -- Insertar usuarios de prueba
--- Contraseña user1
--- Contraseña user2
--- Contraseña user3
+-- Contraseña user1 admin123
+-- Contraseña user2 cliente123
+-- Contraseña user3 cliente456
 INSERT INTO usuarios (id, nombre, correo, contraseña, fecha_creacion) VALUES (1, 'Administrador', 'admin@empresa.com', '$2a$10$8I4aZkjKv3xlWibLfQ5DHe1I55EJXhTP5RxC7BN8OaWeg9LP9i0ZC', NOW()), (2, 'Cliente 1', 'cliente1@empresa.com', '$2a$10$JHdpeCV/WsP/RwBQ6w6MheMHG7vcylwSc9Dn7CpBDjZjSkVtHv5du', NOW()), (3, 'Cliente 2', 'cliente2@empresa.com', '$2a$10$XKXMvXQTVY8IfxQrxu68/OzrcvX.Y1E/B8jBgJtxXY22/qFANd8NS', NOW());
 
 -- Asignar roles a los usuarios
