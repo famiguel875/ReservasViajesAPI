@@ -2,14 +2,18 @@ package com.es.reservasViajes.service
 
 import com.es.reservasViajes.model.Usuario
 import com.es.reservasViajes.repository.UsuarioRepository
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.userdetails.User
+import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
-class UsuarioService(
+class UsuarioService @Autowired constructor(
     private val repository: UsuarioRepository,
     private val passwordEncoder: PasswordEncoder
-) {
+) : UserDetailsService {
 
     fun save(usuario: Usuario): Usuario {
         usuario.contraseña = passwordEncoder.encode(usuario.contraseña)
@@ -31,15 +35,14 @@ class UsuarioService(
         repository.delete(usuario)
     }
 
-    fun verificarCredenciales(correo: String, contraseña: String): Usuario? {
-        val usuario = repository.findByCorreo(correo)
-            ?: throw IllegalArgumentException("Usuario no encontrado con el correo proporcionado")
+    override fun loadUserByUsername(username: String?): UserDetails {
+        val usuario = repository.findByCorreo(username!!)
+            ?: throw Exception("Usuario no encontrado") // Reemplazamos orElseThrow por elvis ?: con excepción
 
-        // Verificar si la contraseña coincide
-        if (!passwordEncoder.matches(contraseña, usuario.contraseña)) {
-            throw IllegalArgumentException("Contraseña incorrecta")
-        }
-
-        return usuario
+        return User.builder()
+            .username(usuario.correo)
+            .password(usuario.contraseña)
+            .roles(*usuario.roles.toTypedArray())
+            .build()
     }
 }

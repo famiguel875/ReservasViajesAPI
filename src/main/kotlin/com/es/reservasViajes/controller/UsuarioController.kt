@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.Authentication
+import org.springframework.security.core.AuthenticationException
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -64,21 +66,17 @@ class UsuarioController(
 
     @PostMapping("/login")
     fun login(@RequestBody usuario: Usuario): ResponseEntity<Any> {
-        return try {
-            // Verificar las credenciales manualmente
-            val usuarioAutenticado = usuarioService.verificarCredenciales(usuario.correo, usuario.contraseña)
-
-            // Autenticar usando el AuthenticationManager
-            val authentication = authenticationManager.authenticate(
-                UsernamePasswordAuthenticationToken(usuarioAutenticado?.correo, usuario.contraseña)
-            )
-
-            // Generar el token JWT
-            val token = tokenService.generarToken(authentication)
-            ResponseEntity.ok(mapOf("token" to token)) // Respuesta exitosa con el token
-        } catch (e: IllegalArgumentException) {
-            ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(mapOf("mensaje" to e.message))
+        val authentication: Authentication
+        try {
+            authentication = authenticationManager.authenticate(UsernamePasswordAuthenticationToken(usuario.correo, usuario.contraseña))
+        } catch (e: AuthenticationException) {
+            return ResponseEntity(mapOf("mensaje" to "Credenciales incorrectas"), HttpStatus.UNAUTHORIZED)
         }
+
+        // Generar el token si la autenticación fue exitosa
+        val token = tokenService.generarToken(authentication)
+
+        return ResponseEntity(mapOf("token" to token), HttpStatus.CREATED)
     }
 }
 
