@@ -32,6 +32,7 @@ class SecurityConfig(private val rsaKeys: RSAKeysProperties) {
         return http
             .csrf { it.disable() }
             .authorizeHttpRequests { auth -> auth
+                .requestMatchers("/usuarios/login").permitAll()
                 // Rutas públicas
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
